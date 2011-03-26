@@ -7,9 +7,8 @@ document.addEvent('domready', function(){
 		});
 		
 	$('logo').setStyle('margin-left', ((this.getSize().x - canvas.getSize().x)*.5).floor());
-		
+ 	
 	
-	//var canvas = new Canvas(document.getElement('canvas'));
 	canvas = new Canvas(canvas);
 
 	var cloth = new Cloth(canvas),
@@ -33,6 +32,13 @@ document.addEvent('domready', function(){
 		}
 		point.inv_mass = inv_mass;
 	};
+	
+	window.addEvent('resize', function(){
+		canvas.refigure();
+	
+	}
+	
+	);
 // 	
 // 	document.addEvents({
 // 		
@@ -71,17 +77,15 @@ document.addEvent('domready', function(){
 	cloth.draw_logo = true;
 	
 // 	setInterval(cloth.update.bind(cloth), 50);
- 	setInterval(cloth.update.bind(cloth), 90);
-// 	setInterval(cloth.breeze.bind(cloth), 4000);
+ 	setInterval(cloth.update.bind(cloth), 40);
+	setInterval(cloth.breeze.bind(cloth), 4000);
+	setInterval(cloth.spaz.bind(cloth), 5000);
 });
 
 var Cloth = function(canvas){
 	
-	//var max_points = 7;
 	var width = canvas.width,
 		height = canvas.height,
-// 		max_dim = Math.max(width, height)/2,
-// 		min_dim = Math.min(width, height)/2,
 		x_offset = 0,
 		y_offset = 0,
 		spacing, spacing_y;
@@ -93,13 +97,13 @@ var Cloth = function(canvas){
 	this.constraints = [];
 	this.quads =[];
 	
-	spacing = (width/9).floor();
-	spacing_y = (height/3).floor();
+	spacing = (width/7).floor();
+	spacing_y = (height/4).floor();
 	
 	
 	var num_x_points = this.num_x_points = (Math.ceil(width/spacing))+1;
-// 	var num_x_points = this.num_x_points = spacing;
 	var num_y_points = this.num_y_points = (Math.ceil(height/spacing_y))+1;
+// 	var num_x_points = this.num_x_points = spacing;
 // 	var num_y_points = this.num_y_points = spacing_y;
 	
 
@@ -144,35 +148,7 @@ var Cloth = function(canvas){
 	}
 
 
-	
 
-	//pin all top points
-
-// 	for (i = 0; i < this.num_x_points; i++){
-// 		this.points[0][i].inv_mass = 0;
-// 		}
-		
-
-// 	
-// 	for ( f = 0; f < 20; f++){
-// 	
-// 	//randomly pick a point
-// 		 point = this.points[(Math.random()*this.num_y_points-1).floor()+1][(Math.random()*this.num_x_points).floor()];
-// // 	 position = new FastVector(canvas.adjust({
-// // 			x: (this.width*Math.random()), 
-// // 			y: (this.width*Math.random())
-// // 			})
-// // 			);
-// 	
-// 		position = new FastVector(Math.random()*1+.0001, Math.random()*1.2+.01);
-// 		if(position){
-// 			console.log(position);
-// 			point.setCurrent(position);
-// 			point.setPrevious(position);
-// 			point.inv_mass=0;
-// 		}
-// 	}
-// 	
 
 	//pin all top points
 
@@ -182,15 +158,15 @@ var Cloth = function(canvas){
 
 
 	//left & right
-// 	for(j=1; j<this.num_y_points; j++){
+// 	for(j=1; j < this.num_y_points; j++){
 // 		this.points[j][0].inv_mass=0;
 // 		this.points[j][this.num_x_points-1].inv_mass=0;
 // 	}
 	
 //bottom
-	for(i=0; i < this.num_x_points; i++){
-		this.points[this.num_y_points-1][i].inv_mass=0;
-	}
+// 	for(i=0; i < this.num_x_points; i++){
+// 		this.points[this.num_y_points-1][i].inv_mass=0;
+// 	}
 
 	
 // pin corners
@@ -244,12 +220,6 @@ Cloth.prototype = {
 			for (i = 0; i < num_c; i++)
 				this.constraints[i].satisfy();
 
-
-		// unneeded?
-// 		for (j = 0; i< num_y; i++)
-// 			for (i = 0; i < num_q; i++)
-// 				this.quads[i].satisfy();
-
 		//draw
 		if (this.draw_constraints)
 			for (i = 0; i < this.num_constraints; i++)
@@ -265,28 +235,11 @@ Cloth.prototype = {
 			for (i = 0; i < this.num_quads; i++){
  				this.quads[i].setcolor();
 				this.quads[i].draw();
-					}
+			}
 
 		}
-		for (t = 0; t<1; t++){
-		px = (Math.random()*(this.num_x_points)).floor();
-		py = (Math.random()*(this.num_y_points)).floor();
-// 		if (px=0) px = 1;
-// 		if (py=0) py = 1;
-		px = ( px < 1 ) ? 1 : (( px > this.num_x_points-1 ) ? this.num_x_points-2 : px);
-		py = ( py < 1 ) ? 1 : (( py > this.num_y_points-2 ) ? this.num_y_points-2 : py);
-
-
-		point = this.points[py][px];
 		
-		position = new FastVector(Math.random()*1+.0001, Math.random()*1.2+.01);
-		if(position){
-			point.setCurrent(position);
-			point.setPrevious(position);
-			point.inv_mass=0.1;
-		}		
-		
-		}
+
 		if (this.draw_logo){
 		
 			//45 = max width of "Yolk" / 2 and rounded
@@ -378,10 +331,32 @@ Cloth.prototype = {
 	},
 	
 	breeze: function(){	
-		var num_x = this.num_x_points,
-			num_y = this.num_y_points;		
-			for (i = 0; i < num_y; i++)
-				for (j = 0; j< num_x; j++)
+			for (i = 0; i < this.num_y_points; i++)
+				for (j = 0; j< this.num_x_points; j++)
 					this.points[i][j].breeze();
+	},
+	
+	spaz: function(){
+		
+		//pick a random point, move it and apply force
+		for (t = 0; t<5; t++){
+		px = (Math.random()*(this.num_x_points)).floor();
+		py = (Math.random()*(this.num_y_points)).floor();
+
+		px = ( px < 1 ) ? 1 : (( px > this.num_x_points-1 ) ? this.num_x_points-1 : px);
+		py = ( py < 1 ) ? 1 : (( py > this.num_y_points-1 ) ? this.num_y_points-2 : py);
+
+
+		point = this.points[py][px];
+		
+		position = new FastVector(Math.random()*1+.0001, Math.random()*1.2+.01);
+			if(position){
+				point.setCurrent(position);
+				point.setPrevious(position);
+				point.inv_mass=0.1;
+			}		
+		
+		}
 	}
+
 };

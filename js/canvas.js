@@ -29,6 +29,7 @@ Canvas.prototype={
 	
 	clear: function(){
 		this.ctx.fillStyle  = "black";
+// 		this.ctx.fillStyle = "rgb(" + (Math.random()*255).floor() + ',' + (Math.random()*255).floor() + ',' + (Math.random()*255).floor() + ')';
 // 		this.ctx.clearRect(0, 0, this.width, this.height);
 		this.ctx.fillRect(0, 0, this.width, this.height);
 
@@ -70,15 +71,22 @@ Canvas.prototype={
 	
 	subtext: function(x, y){
 		FUNDAMENTALS(this.ctx, x, y);
-	}//,	
+	},
+		
+	refigure: function(){
+	var canvas = this.canvas;
+	canvas.setProperties({
+		width: (window.getSize().x*.5).floor(),
+		height: (window.getSize().y*.9).floor()
+		});
+		
+	$('logo').setStyle('margin-left', ((window.getSize().x - canvas.getSize().x)*.5).floor());
+	this.width = canvas.width;
+	this.height = canvas.height;
 
-//  rect by point	
-// 	rect: function(p, w){
-// 		x = p.x * this.width;
-// 		y = p.y * this.height;
-// 		this.ctx.fillRect(x, y, w, w);
-// 
-// 	}
+	}
+
+
 };
 	
 })();
