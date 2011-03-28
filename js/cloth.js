@@ -79,7 +79,7 @@ document.addEvent('domready', function(){
 // 	setInterval(cloth.update.bind(cloth), 50);
  	setInterval(cloth.update.bind(cloth), 40);
 	setInterval(cloth.breeze.bind(cloth), 4000);
-	setInterval(cloth.spaz.bind(cloth), 5000);
+	setInterval(cloth.spaz.bind(cloth), 20000);
 });
 
 var Cloth = function(canvas){
