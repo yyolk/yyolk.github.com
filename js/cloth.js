@@ -2,7 +2,11 @@
 document.addEvent('domready', function(){
 	var canvas = document.getElement('canvas');
 	canvas.setProperties({
-		width: (this.getSize().x*.5).floor(),
+		//--------------------------------------------------
+		// width: (this.getSize().x*.5).floor(),
+		// height: (this.getSize().y*.9).floor()
+		//-------------------------------------------------- 
+		width: (this.getSize().x).floor(),
 		height: (this.getSize().y*.9).floor()
 		});
 		
@@ -88,7 +92,7 @@ var Cloth = function(canvas){
 	
 	var width = canvas.width,
 		height = canvas.height,
-		x_offset = 0,
+		x_offset = width/2 - width/4,
 		y_offset = 0,
 		spacing, spacing_y;
 
@@ -245,7 +249,7 @@ Cloth.prototype = {
 		if (this.draw_logo){
 		
 			//45 = max width of "Yolk" / 2 and rounded
-			this.canvas.logo(this.canvas.width/2 - 45, (this.canvas.height/6));
+			this.canvas.logo((this.canvas.width/2+this.canvas.width/4)-45 , (this.canvas.height/6));
 			}
 
 // pin corners

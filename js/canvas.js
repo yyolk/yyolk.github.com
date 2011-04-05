@@ -8,9 +8,12 @@ var Canvas = this.Canvas = function(canvas){
 	this.ctx = this.canvas.getContext('2d');
 	this.ctx.fillStyle = this.ctx.strokeStyle = 'black';
 
-	this.width = this.canvas.width;
-	this.height = this.canvas.height;
-
+	//--------------------------------------------------
+	// this.width = this.canvas.width;
+	// this.height = this.canvas.height;
+	//-------------------------------------------------- 
+    this.width = (this.canvas.width/3)*2;
+    this.height = this.canvas.height;
 
 };
 
@@ -28,10 +31,10 @@ Canvas.prototype={
 	},
 	
 	clear: function(){
-		this.ctx.fillStyle  = "white";
+		this.ctx.fillStyle  = "black";
 // 		this.ctx.fillStyle = "rgb(" + (Math.random()*255).floor() + ',' + (Math.random()*255).floor() + ',' + (Math.random()*255).floor() + ')';
 // 		this.ctx.clearRect(0, 0, this.width, this.height);
-		this.ctx.fillRect(0, 0, this.width, this.height);
+		this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
 	},
 	
@@ -76,8 +79,15 @@ Canvas.prototype={
 	refigure: function(){
 	var canvas = this.canvas;
 	canvas.setProperties({
-		width: (window.getSize().x*.5).floor(),
-		height: (window.getSize().y*.9).floor()
+		//--------------------------------------------------
+		// width: (window.getSize().x*.5).floor(),
+		// height: (window.getSize().y*.9).floor()
+		//-------------------------------------------------- 
+
+		width: (this.getSize().x).floor(),
+		height: (this.getSize().y*.9).floor()
+
+
 		});
 		
 	$('logo').setStyle('margin-left', ((window.getSize().x - canvas.getSize().x)*.5).floor());

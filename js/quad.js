@@ -58,12 +58,13 @@ Quad.prototype = {
 	setcolor: function(){
 // 		var c = Math.random() * 255;
  
-		var c =  (this.p2.getPrevious().subtract(this.p2.getCurrent()).x) * 10000 * (200*.009);
+		//var c =  (this.p2.getPrevious().subtract(this.p2.getCurrent()).x) * 10000 * (200*.009);
+		var c = (255) - (this.p2.getPrevious().subtract(this.p2.getCurrent()).x) * 10000;
 		
 		
 // 		c = c * 800;
 // 		c = (c < 1) ? 0 : ((c >255) ? (Math.random()*150+50) : c);
- 		c = (c < 1) ? 0 : ((c >200) ? (200) : c);
+ 		c = (c < 1) ? 0 : ((c >255) ? (255) : c);
 
 		this.color = c.floor();
 	}

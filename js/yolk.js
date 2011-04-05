@@ -1,7 +1,7 @@
 var YOLK = function(canvas, x, y) {
         var c = canvas;
 // 		c.globalCompositeOperation = 'source-atop';
-        c.fillStyle = "white";
+        c.fillStyle = "black";
 //         c.strokeStyle = 'black';
 		c.save();
 		c.translate(x,y);
