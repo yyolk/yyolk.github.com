@@ -79,7 +79,9 @@ document.addEvent('domready', function(){
 // 	setInterval(cloth.update.bind(cloth), 50);
  	setInterval(cloth.update.bind(cloth), 40);
 	setInterval(cloth.breeze.bind(cloth), 4000);
-	setInterval(cloth.spaz.bind(cloth), 20000);
+	//--------------------------------------------------
+	// setInterval(cloth.spaz.bind(cloth), 20000);
+	//-------------------------------------------------- 
 });
 
 var Cloth = function(canvas){
@@ -97,8 +99,8 @@ var Cloth = function(canvas){
 	this.constraints = [];
 	this.quads =[];
 	
-	spacing = (width/7).floor();
-	spacing_y = (height/4).floor();
+	spacing = (width/18).floor();
+	spacing_y = (height/10).floor();
 	
 	
 	var num_x_points = this.num_x_points = (Math.ceil(width/spacing))+1;

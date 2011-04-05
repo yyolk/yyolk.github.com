@@ -28,7 +28,7 @@ Canvas.prototype={
 	},
 	
 	clear: function(){
-		this.ctx.fillStyle  = "black";
+		this.ctx.fillStyle  = "white";
 // 		this.ctx.fillStyle = "rgb(" + (Math.random()*255).floor() + ',' + (Math.random()*255).floor() + ',' + (Math.random()*255).floor() + ')';
 // 		this.ctx.clearRect(0, 0, this.width, this.height);
 		this.ctx.fillRect(0, 0, this.width, this.height);
