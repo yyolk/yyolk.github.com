@@ -7,7 +7,7 @@ document.addEvent('domready', function(){
 		// height: (this.getSize().y*.9).floor()
 		//-------------------------------------------------- 
 		width: (this.getSize().x).floor(),
-		height: (this.getSize().y*.9).floor()
+		height: (this.getSize().y).floor()
 		});
 		
 	$('logo').setStyle('margin-left', ((this.getSize().x - canvas.getSize().x)*.5).floor());
