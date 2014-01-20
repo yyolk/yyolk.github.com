@@ -84,7 +84,7 @@ document.addEvent('domready', function(){
  	setInterval(cloth.update.bind(cloth), 40);
 	setTimeout(cloth.breeze.bind(cloth), 200);
 	//--------------------------------------------------
-	 setTimeout(cloth.spaz.bind(cloth), 500);
+	 setTimeout(cloth.spaz.bind(cloth), 1500);
 	 setInterval(cloth.spaz.bind(cloth), 15000);
 	//-------------------------------------------------- 
 });

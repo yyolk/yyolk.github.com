@@ -12,7 +12,7 @@ var Canvas = this.Canvas = function(canvas){
 	// this.width = this.canvas.width;
 	// this.height = this.canvas.height;
 	//-------------------------------------------------- 
-    this.width = (this.canvas.width/3)*2;
+    this.width = Math.floor((this.canvas.width/3)*2);
     this.height = this.canvas.height;
 
 };
