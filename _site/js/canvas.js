@@ -12,7 +12,7 @@ var Canvas = this.Canvas = function(canvas){
 	// this.width = this.canvas.width;
 	// this.height = this.canvas.height;
 	//-------------------------------------------------- 
-    this.width = (this.canvas.width/3)*2;
+    this.width = Math.floor((this.canvas.width/3)*2);
     this.height = this.canvas.height;
 
 };
@@ -90,7 +90,7 @@ Canvas.prototype={
 
 		});
 		
-	$('logo').setStyle('margin-left', ((window.getSize().x - canvas.getSize().x)*.5).floor());
+	$('logo').setStyle('margin-left', ((canvas.getSize().x - canvas.getSize().x)*.5).floor());
 	this.width = canvas.width;
 	this.height = canvas.height;
 

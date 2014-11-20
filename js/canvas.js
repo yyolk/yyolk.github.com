@@ -90,7 +90,7 @@ Canvas.prototype={
 
 		});
 		
-	$('logo').setStyle('margin-left', ((window.getSize().x - canvas.getSize().x)*.5).floor());
+	$('logo').setStyle('margin-left', ((canvas.getSize().x - canvas.getSize().x)*.5).floor());
 	this.width = canvas.width;
 	this.height = canvas.height;
 

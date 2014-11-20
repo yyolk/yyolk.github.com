@@ -1,18 +1,16 @@
 
 document.addEvent('domready', function(){
 	var canvas = document.getElement('canvas');
-	canvas.setProperties({
-		//--------------------------------------------------
-		// width: (this.getSize().x*.5).floor(),
-		// height: (this.getSize().y*.9).floor()
-		//-------------------------------------------------- 
-		width: (this.getSize().x).floor(),
-		height: (this.getSize().y).floor()
+		canvas.setProperties({
+			//--------------------------------------------------
+			// width: (this.getSize().x*.5).floor(),
+			// height: (this.getSize().y*.9).floor()
+			//-------------------------------------------------- 
+			width: (this.getSize().x).floor(),
+			height: (this.getSize().y).floor()
 		});
 		
 	$('logo').setStyle('margin-left', ((this.getSize().x - canvas.getSize().x)*.5).floor());
- 	
-	
 	canvas = new Canvas(canvas);
 
 	var cloth = new Cloth(canvas),
@@ -38,8 +36,8 @@ document.addEvent('domready', function(){
 	};
 	
 	window.addEvent('resize', function(){
-		canvas.refigure();
-	
+		// canvas.refigure();
+		// refigure();
 	}
 	
 	);
@@ -82,9 +80,10 @@ document.addEvent('domready', function(){
 	
 // 	setInterval(cloth.update.bind(cloth), 50);
  	setInterval(cloth.update.bind(cloth), 40);
-	setInterval(cloth.breeze.bind(cloth), 4000);
+	setTimeout(cloth.breeze.bind(cloth), 200);
 	//--------------------------------------------------
-	// setInterval(cloth.spaz.bind(cloth), 20000);
+	 setTimeout(cloth.spaz.bind(cloth), 1500);
+	 setInterval(cloth.spaz.bind(cloth), 15000);
 	//-------------------------------------------------- 
 });
 
