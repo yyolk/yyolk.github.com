@@ -1,19 +1,21 @@
 
-(function(){
+// (function(){
 
 var two_pi = Math.PI * 2;
 
+// var Canvas = this.Canvas = function(canvas){
 var Canvas = this.Canvas = function(canvas){
 	this.canvas = canvas;
+	this.YOLK = new YOLK(this.canvas)
 	this.ctx = this.canvas.getContext('2d');
 	this.ctx.fillStyle = this.ctx.strokeStyle = 'black';
 
-	//--------------------------------------------------
-	// this.width = this.canvas.width;
-	// this.height = this.canvas.height;
+	// --------------------------------------------------
+	this.width = this.canvas.width;
+	this.height = this.canvas.height;
 	//-------------------------------------------------- 
-    this.width = Math.floor((this.canvas.width/3)*2);
-    this.height = this.canvas.height;
+    // this.width = Math.floor((this.canvas.width/3)*2);
+    // this.height = this.canvas.height;
 
 };
 
@@ -69,7 +71,8 @@ Canvas.prototype={
 	
 	logo: function(x, y){
 		//this.ctx.drawImage(this.yolk, x, y);
-		YOLK(this.ctx, x, y);
+		// YOLK(this.ctx, x, y);
+		this.YOLK.draw(x, y);
 	},
 	
 	subtext: function(x, y){
@@ -77,26 +80,32 @@ Canvas.prototype={
 	},
 		
 	refigure: function(){
-	var canvas = this.canvas;
-	canvas.setProperties({
-		//--------------------------------------------------
-		// width: (window.getSize().x*.5).floor(),
-		// height: (window.getSize().y*.9).floor()
-		//-------------------------------------------------- 
+	
+		this.canvas.setProperties({
+			//--------------------------------------------------
+			// width: (window.getSize().x*.5).floor(),
+			// height: (window.getSize().y*.9).floor()
+			//-------------------------------------------------- 
 
-		width: (this.getSize().x).floor(),
-		height: (this.getSize().y*.9).floor()
+			width: (window.getSize().x).floor(),
+			height: (window.getSize().y).floor()
 
 
-		});
+			});
 		
-	$('logo').setStyle('margin-left', ((canvas.getSize().x - canvas.getSize().x)*.5).floor());
-	this.width = canvas.width;
-	this.height = canvas.height;
+	// $('logo').setStyle('margin-left', ((window.getSize().x - this.canvas.getSize().x)*.5).floor());
+	// this.width = canvas.width;
+	// this.height = canvas.height;
+	// this.adjust(
+	// 	{
+	// 		x: Math.floor(window.getSize().x * .5), 
+	// 		y: Math.floor(window.getSize().y * .5)
+	// 	}
+	// );
 
 	}
 
 
 };
 	
-})();
+// })();

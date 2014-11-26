@@ -1,22 +1,33 @@
-
 document.addEvent('domready', function(){
-	var canvas = document.getElement('canvas');
-		canvas.setProperties({
+	// var canvas = document.getElement('canvas');
+	// var canvas = window.canvas;
+	var c = document.getElementsByTagName('canvas')[0];
+	// document.addEvent('ready', function() {
+			// canvas zoom
+		c.setProperties({
 			//--------------------------------------------------
 			// width: (this.getSize().x*.5).floor(),
 			// height: (this.getSize().y*.9).floor()
 			//-------------------------------------------------- 
-			width: (this.getSize().x).floor(),
-			height: (this.getSize().y).floor()
+			width: (window.getSize().x).floor(),
+			height: (window.getSize().y).floor()
 		});
-		
-	$('logo').setStyle('margin-left', ((this.getSize().x - canvas.getSize().x)*.5).floor());
-	canvas = new Canvas(canvas);
+	// })
 
-	var cloth = new Cloth(canvas),
-		inputs = {}, point,
-		key_down, mouse_down, mouse;
+	// (function(){
+	// var canvas  = document.getElementsByTagName('canvas')[0];
+	// window.canvas = canvas;
+	// })();
+	// var canvas = new Canvas(canvas);
+  var canvas = new Canvas(c);
+  canvas.refigure();
+	// $('logo').setStyle('margin-left', ((this.getSize().x - c.getSize().x)*.5).floor());
+	// $('logo').setStyle('margin-left', ((this.getSize().x - this.getSize().y)*.5).floor());
 	
+	var cloth = new Cloth(canvas);
+	window.cloth = cloth; 
+	var inputs = {}, point,
+		key_down, mouse_down, mouse;
 	
 	
 	var position = function(event){
@@ -36,7 +47,8 @@ document.addEvent('domready', function(){
 	};
 	
 	window.addEvent('resize', function(){
-		// canvas.refigure();
+		canvas.refigure();
+		cloth = new Cloth(canvas);
 		// refigure();
 	}
 	
@@ -88,22 +100,24 @@ document.addEvent('domready', function(){
 });
 
 var Cloth = function(canvas){
+	this.canvas = canvas;
 	
-	var width = canvas.width,
-		height = canvas.height,
-		x_offset = width/2 - width/4,
+	var width = this.canvas.width,
+		height = this.canvas.height,
+		// x_offset = width/2 - width/4,
+		x_offset = 0,
 		y_offset = 0,
 		spacing, spacing_y;
 
 	
 	this.num_iterations = 1;
-	this.canvas = canvas;
 	this.points = [];
 	this.constraints = [];
 	this.quads =[];
 	
-	spacing = (width/18).floor();
-	spacing_y = (height/10).floor();
+	// spacing = (width/1).floor();
+	spacing = (width/7).floor();
+	spacing_y = (height/20).floor();
 	
 	
 	var num_x_points = this.num_x_points = (Math.ceil(width/spacing))+1;
@@ -230,10 +244,14 @@ Cloth.prototype = {
 			for (i = 0; i < this.num_constraints; i++)
 				this.constraints[i].draw();
 		
+		// if (this.draw_points)
+		// 	for (i = 0; i < this.num_y_points; i++)
+		// 		for (j = 0; j < this.num_x_points; j++)
+		// 			this.points[j][i].draw();
 		if (this.draw_points)
-			for (i = 0; i < this.num_y_points; i++)
-				for (j = 0; j < this.num_x_points; j++)
-					this.points[i][j].draw();
+			for (i = 0; i < this.num_x_points; i++)
+				for (j = 0; j < this.num_y_points; j++)
+					this.points[j][i].draw();
 					
 
 		if (this.draw_quads){
@@ -248,7 +266,10 @@ Cloth.prototype = {
 		if (this.draw_logo){
 		
 			//45 = max width of "Yolk" / 2 and rounded
-			this.canvas.logo((this.canvas.width/2+this.canvas.width/4)-45 , (this.canvas.height/6));
+			// this.canvas.logo((this.canvas.width/2+this.canvas.width/4)-45 , (this.canvas.height/6));
+
+			// no margins
+			this.canvas.logo((window.getWidth()/2), (window.getHeight()/6));
 			}
 
 // pin corners
