@@ -35,7 +35,7 @@ YOLK.prototype.draw = function(x, y) {
         // this.update_color((Math.random()*255).floor());
         // this.update_color(0);
         // this.ctx.fillStyle = "black";
-        var my_gradient= this.ctx.createLinearGradient(0,0,0,this.canvas.getHeight()/2);
+        var my_gradient= this.ctx.createLinearGradient(0,0,0,this.canvas.getHeight()/2.3); // separate into own canvas el, to get it's own size
         my_gradient.addColorStop(0,"black");
         my_gradient.addColorStop(1,"rgba(0, 0, 0, 0.65)");
         this.ctx.fillStyle = my_gradient;
