@@ -20,8 +20,9 @@ document.addEvent('domready', function(){
 	// })();
 	// var canvas = new Canvas(canvas);
   var canvas = new Canvas(c);
+  window.canvas = canvas;
   canvas.refigure();
-	// $('logo').setStyle('margin-left', ((this.getSize().x - c.getSize().x)*.5).floor());
+	// $('logo').setStyle('margin-left', ((this.getSize().x - cd.getSize().x)*.5).floor());
 	// $('logo').setStyle('margin-left', ((this.getSize().x - this.getSize().y)*.5).floor());
 	
 	var cloth = new Cloth(canvas);
@@ -48,11 +49,16 @@ document.addEvent('domready', function(){
 	
 	window.addEvent('resize', function(){
 		canvas.refigure();
-		cloth = new Cloth(canvas);
+		// cloth = new Cloth(canvas);
 		// refigure();
+	});
+
+	var spaz_me = function(e) {
+		cloth.spaz();
 	}
+	c.addEventListener('click', spaz_me, false);
+	c.addEventListener('touchend', spaz_me, false);
 	
-	);
 // 	
 // 	document.addEvents({
 // 		
