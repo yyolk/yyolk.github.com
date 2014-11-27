@@ -49,7 +49,7 @@ document.addEvent('domready', function(){
 	
 	window.addEvent('resize', function(){
 		canvas.refigure();
-		// cloth = new Cloth(canvas);
+		cloth = new Cloth(canvas);
 		// refigure();
 	});
 
