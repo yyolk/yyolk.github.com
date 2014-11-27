@@ -7,7 +7,7 @@ var YOLK = function(canvas) {
 //              c.globalCompositeOperation = 'source-atop';
         // c.fillStyle = "black";
         
-        this.ctx.fillStyle = "black";
+        // this.ctx.fillStyle = "black";
         // draw(c, x, y);
 
 //         c.strokeStyle = 'black';
@@ -33,7 +33,12 @@ YOLK.prototype.update_color = function(color) {
 
 YOLK.prototype.draw = function(x, y) {
         // this.update_color((Math.random()*255).floor());
-        this.update_color(0);
+        // this.update_color(0);
+        // this.ctx.fillStyle = "black";
+        var my_gradient= this.ctx.createLinearGradient(0,0,0,170);
+        my_gradient.addColorStop(0,"black");
+        my_gradient.addColorStop(1,"rgba(0, 0, 0, 0.65)");
+        this.ctx.fillStyle = my_gradient;
         var ctx = this.ctx;
         ctx.save();
         ctx.translate(x,y);

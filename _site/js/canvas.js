@@ -61,6 +61,7 @@ Canvas.prototype={
 	quad: function(x1, x2, x3, x4, color){
 
 		this.ctx.fillStyle = 'rgb(' + color + ',' + color + ',' + color + ')';
+		// this.ctx.fillStyle = 'rgba(' + color + ',' + color + ',' + color + ',' + 0.9 + ')';
 		this.ctx.beginPath();
 		this.ctx.moveTo(x1.x * this.width, x1.y * this.height);
 		this.ctx.lineTo(x2.x * this.width, x2.y * this.height);

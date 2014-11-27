@@ -116,7 +116,7 @@ var Cloth = function(canvas){
 	this.quads =[];
 	
 	// spacing = (width/1).floor();
-	spacing = (width/7).floor();
+	spacing = (width/13).floor();
 	spacing_y = (height/20).floor();
 	
 	
