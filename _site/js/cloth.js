@@ -116,7 +116,7 @@ var Cloth = function(canvas){
 	this.quads =[];
 	
 	// spacing = (width/1).floor();
-	spacing = (width/13).floor();
+	spacing = (width/8).floor();
 	spacing_y = (height/20).floor();
 	
 	
@@ -269,8 +269,11 @@ Cloth.prototype = {
 			// this.canvas.logo((this.canvas.width/2+this.canvas.width/4)-45 , (this.canvas.height/6));
 
 			// no margins
-			this.canvas.logo((window.getWidth()/2), (window.getHeight()/6));
-			}
+			// this.canvas.logo((window.getWidth()/2), (window.getHeight()/6));
+
+			// no spacing
+			this.canvas.logo((window.getWidth()/2-45), (window.getHeight()/6));	
+		}
 
 // pin corners
 // top left
