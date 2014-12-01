@@ -57,7 +57,8 @@ document.addEvent('domready', function(){
 		cloth.spaz();
 	}
 	c.addEventListener('click', spaz_me, false);
-	c.addEventListener('touchend', spaz_me, false);
+	// c.addEventListener('touchend', spaz_me, false);
+	c.addEventListener('touchstart', spaz_me, false);
 	
 // 	
 // 	document.addEvents({
